@@ -1,4 +1,3 @@
-//Import all required modules.
 const path = require('path');
 const fs = require('fs');
 const { stdin } = process;
