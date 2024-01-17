@@ -14,21 +14,28 @@ fs.promises.readdir(folderPath, { withFileTypes: true }).then((filenames) => {
         return;
       }
       if (stats.isFile() && path.extname(filePath) === '.css') {
-        const readStream = fs.createReadStream(filePath, 'utf8');
-        readStream.on('data', (data) => {
-          readData.push(data);
-          const writeStream = fs.createWriteStream(bundleFilePath);
-          writeStream.write(`${readData.join('')}`, (err) => {
-            if (err) {
-              console.error('Error:', err);
-            }
-            console.log('Completed');
-          });
-        });
-        readStream.on('error', (err) => {
-          console.error(`Error: ${err.message}`);
-        });
+        readSrcFiles(filePath);
       }
     });
   }
 });
+
+const readSrcFiles = (filePath) => {
+  const readStream = fs.createReadStream(filePath, 'utf8');
+  readStream.on('data', (data) => {
+    readData.push(data);
+    fillBundle();
+  });
+  readStream.on('error', (err) => {
+    console.error(`Error: ${err.message}`);
+  });
+};
+
+const fillBundle = () => {
+  const writeStream = fs.createWriteStream(bundleFilePath);
+  writeStream.write(`${readData.join('')}`, (err) => {
+    if (err) {
+      console.error('Error:', err);
+    }
+  });
+};
