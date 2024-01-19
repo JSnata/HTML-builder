@@ -17,7 +17,7 @@ fs.promises
           const name = filename.name.substr(0, filename.name.lastIndexOf('.'));
           const extension = path.extname(filePath).slice(1);
           const size = stats.size;
-          console.log(`${name} - ${extension} - ${size}`);
+          console.log(`${name} - ${extension} - ${size}bytes`);
         }
       });
     }
