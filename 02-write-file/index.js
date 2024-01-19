@@ -9,8 +9,8 @@ console.log('Hi! Enter text (Ctrl+C or type "exit" to exit):');
 
 stdin.on('data', (input) => {
   const userInput = input.toString();
-  if (userInput.toLowerCase() === 'exit') {
-    console.log('Bye!...');
+  if (userInput.toLowerCase().trim() === 'exit') {
+    console.log('Bye! See you soon...');
     process.exit(0);
   } else {
     writeStream.write(`${userInput}`, (err) => {
@@ -24,6 +24,6 @@ stdin.on('data', (input) => {
 });
 
 process.on('SIGINT', () => {
-  console.log('\nBye!...');
+  console.log('\nBye! See you soon...');
   process.exit(0);
 });
