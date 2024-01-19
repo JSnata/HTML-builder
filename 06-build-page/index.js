@@ -52,7 +52,7 @@ readHtml(templatePath).then((template) => {
           .then((html) => {
             result = result.replace(
               `{{${filename.name.substr(0, filename.name.lastIndexOf('.'))}}}`,
-              html,
+              html.trim(),
             );
             return result;
           })
