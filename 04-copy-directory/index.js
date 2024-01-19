@@ -25,6 +25,7 @@ async function copyDir(src, dest) {
 
       await fs.copyFile(srcPath, destPath);
     }
+    console.log('Files copied');
   } catch (err) {
     console.error('Error:', err);
   }
