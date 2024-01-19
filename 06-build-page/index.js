@@ -35,7 +35,6 @@ const writeHtml = (path, input) => {
       if (err) {
         reject('Error:', err);
       }
-      console.log('Written');
       resolve(input);
     });
   });
